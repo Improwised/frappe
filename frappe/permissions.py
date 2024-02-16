@@ -205,6 +205,8 @@ def get_doc_permissions(doc, user=None, ptype=None):
 		# eg. everyone might have read access but only owner can delete
 		permissions.update(permissions.get("if_owner", {}))
 
+	"""ToDos: will not work, cause what is has_user_permission return true,
+	but don't have group permission and also remove print statement"""
 	if not has_user_permission(doc, user) or not has_user_group_permission(doc, user):
 		if is_user_owner():
 			# replace with owner permissions
