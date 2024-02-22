@@ -16,10 +16,24 @@ class UserGroupPermission(Document):
 		self.validate_default_permission()
 
 	def on_update(self):
-		users = self.get_users_of_group()
-		for user in users:
-			frappe.cache().hdel("user_group_permission", user)
-			frappe.publish_realtime("update_user_group_permission", user=user, after_commit=True)
+		old_doc = self.get_doc_before_save()
+
+		if not old_doc:
+			users = self.get_users_of_group()
+			for user in users:
+				frappe.cache().hdel("user_group_permission", user)
+				frappe.publish_realtime("update_user_group_permission", user=user, after_commit=True)
+		else:
+			users = get_users_of_group(old_doc.user_group)
+			for user in users:
+				frappe.cache().hdel("user_group_permission", user)
+				frappe.publish_realtime("update_user_group_permission", user=user, after_commit=True)
+
+			new_users = self.get_users_of_group()
+			for user in new_users:
+				frappe.cache().hdel("user_group_permission", user)
+				frappe.publish_realtime("update_user_group", user=user, after_commit=True)
+				get_user_permissions_from_user_group(user)
 
 	def on_trash(self):
 		users = self.get_users_of_group()
