@@ -205,9 +205,7 @@ def get_doc_permissions(doc, user=None, ptype=None):
 		# eg. everyone might have read access but only owner can delete
 		permissions.update(permissions.get("if_owner", {}))
 
-	"""ToDos: will not work, cause what is has_user_permission return true,
-	but don't have group permission and also remove print statement"""
-	if not has_user_permission(doc, user) or not has_user_group_permission(doc, user):
+	if not has_user_permission(doc, user):
 		if is_user_owner():
 			# replace with owner permissions
 			permissions = permissions.get("if_owner", {})
@@ -215,7 +213,6 @@ def get_doc_permissions(doc, user=None, ptype=None):
 			permissions["create"] = 0
 		else:
 			permissions = {}
-
 	return permissions
 
 
@@ -289,10 +286,30 @@ def get_user_permissions(user):
 
 
 def has_user_permission(doc, user=None):
-	"""Returns True if User is allowed to view considering User Permissions"""
+	"""Returns True if User is allowed to view considering User Permissions and User Group Permissions"""
+	from frappe.core.doctype.user_group_permission.user_group_permission import (
+		get_user_permissions_from_user_group,
+	)
 	from frappe.core.doctype.user_permission.user_permission import get_user_permissions
 
 	user_permissions = get_user_permissions(user)
+	user_group_permissions = get_user_permissions_from_user_group(user)
+
+	# merge both dict user_permissions and user_group_permissions (duplicate record shouldn;t exist)
+	total_permissions = {}
+
+	for perm in [user_permissions, user_group_permissions]:
+		for key, value_list in perm.items():
+			if key not in total_permissions:
+				total_permissions[key] = []
+
+			for value in value_list:
+				# Check if the 'doc' value is not already present in the merged dictionary
+				if value["doc"] not in [item["doc"] for item in total_permissions[key]]:
+					total_permissions[key].append(value)
+
+	# override user permissions to total permissions
+	user_permissions = total_permissions
 
 	if not user_permissions:
 		# no user permission rules specified for this doctype
@@ -300,98 +317,6 @@ def has_user_permission(doc, user=None):
 
 	# user can create own role permissions, so nothing applies
 	if get_role_permissions("User Permission", user=user).get("write"):
-		return True
-
-	apply_strict_user_permissions = frappe.get_system_settings("apply_strict_user_permissions")
-
-	doctype = doc.get("doctype")
-	docname = doc.get("name")
-
-	# STEP 1: ---------------------
-	# check user permissions on self
-	if doctype in user_permissions:
-		allowed_docs = get_allowed_docs_for_doctype(user_permissions.get(doctype, []), doctype)
-
-		# if allowed_docs is empty it states that there is no applicable permission under the current doctype
-
-		# only check if allowed_docs is not empty
-		if allowed_docs and docname not in allowed_docs:
-			# no user permissions for this doc specified
-			push_perm_check_log(_("Not allowed for {0}: {1}").format(_(doctype), docname))
-			return False
-
-	# STEP 2: ---------------------------------
-	# check user permissions in all link fields
-
-	def check_user_permission_on_link_fields(d):
-		# check user permissions for all the link fields of the given
-		# document object d
-		#
-		# called for both parent and child records
-
-		meta = frappe.get_meta(d.get("doctype"))
-
-		# check all link fields for user permissions
-		for field in meta.get_link_fields():
-
-			if field.ignore_user_permissions:
-				continue
-
-			# empty value, do you still want to apply user permissions?
-			if not d.get(field.fieldname) and not apply_strict_user_permissions:
-				# nah, not strict
-				continue
-
-			if field.options not in user_permissions:
-				continue
-
-			# get the list of all allowed values for this link
-			allowed_docs = get_allowed_docs_for_doctype(user_permissions.get(field.options, []), doctype)
-
-			if allowed_docs and d.get(field.fieldname) not in allowed_docs:
-				# restricted for this link field, and no matching values found
-				# make the right message and exit
-				if d.get("parentfield"):
-					# "Not allowed for Company = Restricted Company in Row 3. Restricted field: reference_type"
-					msg = _("Not allowed for {0}: {1} in Row {2}. Restricted field: {3}").format(
-						_(field.options), d.get(field.fieldname), d.idx, field.fieldname
-					)
-				else:
-					# "Not allowed for Company = Restricted Company. Restricted field: reference_type"
-					msg = _("Not allowed for {0}: {1}. Restricted field: {2}").format(
-						_(field.options), d.get(field.fieldname), field.fieldname
-					)
-
-				push_perm_check_log(msg)
-
-				return False
-
-		return True
-
-	if not check_user_permission_on_link_fields(doc):
-		return False
-
-	for d in doc.get_all_children():
-		if not check_user_permission_on_link_fields(d):
-			return False
-
-	return True
-
-
-def has_user_group_permission(doc, user=None):
-	"""Returns True if User is allowed to view considering User Group Permissions"""
-	from frappe_group_permission.frappe_group_permission.doctype.user_group_permission.user_group_permission import (
-		get_user_permissions_from_user_group,
-	)
-
-	user_permissions = get_user_permissions_from_user_group(user)
-	print("----------", user_permissions)
-	if not user_permissions:
-		# no user permission rules specified for this doctype
-		return True
-
-	# user can create own role permissions, so nothing applies
-	if get_role_permissions("User Group Permission", user=user).get("write"):
 		return True
 
 	apply_strict_user_permissions = frappe.get_system_settings("apply_strict_user_permissions")
