@@ -12,10 +12,7 @@ class UserGroup(Document):
 	def on_update(self):
 		old_doc = self.get_doc_before_save()
 		if not old_doc:
-			for user in self.user_group_members:
-				frappe.cache().hdel("user_group_permission", user)
-				frappe.publish_realtime("update_user_group", user=user, after_commit=True)
-				get_user_permissions_from_user_group(user)
+			pass
 		else:
 			old_users = []
 			for user in old_doc.user_group_members:
