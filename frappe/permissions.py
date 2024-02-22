@@ -325,6 +325,7 @@ def has_user_permission(doc, user=None):
 
 	# user can create own role permissions, so nothing applies
 	# Here, only system administrator has User Permission and User Group Permission as write
+	# But I think this is bug, it enable system administrator to open any doctype, even it has user permissions. (can not see in list view, but can open it)
 	if get_role_permissions("User Permission", user=user).get("write") or get_role_permissions(
 		"User Group Permission", user=user
 	).get("write"):
