@@ -925,6 +925,9 @@ class DatabaseQuery:
 			and not (role_permissions.get("select") or role_permissions.get("read"))
 			and not self.flags.ignore_permissions
 			and not has_any_user_permission_for_doctype(self.doctype, self.user, self.reference_doctype)
+			and not has_any_user_group_permission_for_doctype(
+				self.doctype, self.user, self.reference_doctype
+			)
 		):
 			only_if_shared = True
 			if not self.shared:
@@ -943,6 +946,24 @@ class DatabaseQuery:
 			elif role_permissions.get("read") or role_permissions.get("select"):
 				# get user permissions
 				user_permissions = frappe.permissions.get_user_permissions(self.user)
+				user_group_permissions = frappe.permissions.get_user_permissions_from_user_group(self.user)
+
+				# merge both dict user_permissions and user_group_permissions (duplicate record shouldn;t exist)
+				total_permissions = {}
+
+				for perm in [user_permissions, user_group_permissions]:
+					for key, value_list in perm.items():
+						if key not in total_permissions:
+							total_permissions[key] = []
+
+						for value in value_list:
+							# Check if the 'doc' value is not already present in the merged dictionary
+							if value["doc"] not in [item["doc"] for item in total_permissions[key]]:
+								total_permissions[key].append(value)
+
+				# override user permissions to total permissions
+				user_permissions = total_permissions
+
 				self.add_user_permissions(user_permissions)
 
 		if as_condition:
@@ -1239,6 +1260,17 @@ def is_parent_only_filter(doctype, filters):
 def has_any_user_permission_for_doctype(doctype, user, applicable_for):
 	user_permissions = frappe.permissions.get_user_permissions(user=user)
 	doctype_user_permissions = user_permissions.get(doctype, [])
+
+	for permission in doctype_user_permissions:
+		if not permission.applicable_for or permission.applicable_for == applicable_for:
+			return True
+
+	return False
+
+
+def has_any_user_group_permission_for_doctype(doctype, user, applicable_for):
+	user_group_permissions = frappe.permissions.get_user_permissions_from_user_group(user=user)
+	doctype_user_permissions = user_group_permissions.get(doctype, [])
 
 	for permission in doctype_user_permissions:
 		if not permission.applicable_for or permission.applicable_for == applicable_for:

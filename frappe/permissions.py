@@ -285,6 +285,14 @@ def get_user_permissions(user):
 	return get_user_permissions(user)
 
 
+def get_user_permissions_from_user_group(user):
+	from frappe.core.doctype.user_group_permission.user_group_permission import (
+		get_user_permissions_from_user_group,
+	)
+
+	return get_user_permissions_from_user_group(user)
+
+
 def has_user_permission(doc, user=None):
 	"""Returns True if User is allowed to view considering User Permissions and User Group Permissions"""
 	from frappe.core.doctype.user_group_permission.user_group_permission import (
