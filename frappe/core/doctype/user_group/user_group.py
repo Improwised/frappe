@@ -23,9 +23,11 @@ class UserGroup(Document):
 
 		for user in deleted_users:
 			frappe.cache().hdel("user_group_permission", user)
+			frappe.publish_realtime("update_user_group", user=user, after_commit=True)
 
 		for user in added_users:
 			frappe.cache().hdel("user_group_permission", user)
+			frappe.publish_realtime("update_user_group", user=user, after_commit=True)
 			get_user_permissions_from_user_group(user)
 
 	def find_modified_users(self, old_list, new_list):
