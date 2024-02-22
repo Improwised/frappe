@@ -324,7 +324,8 @@ def has_user_permission(doc, user=None):
 		return True
 
 	# user can create own role permissions, so nothing applies
-	if get_role_permissions("User Permission", user=user).get("write"):
+	# Here, only system administrator has User Permission and User Group Permission as write
+	if get_role_permissions("User Permission", user=user).get("write") or get_role_permissions("User Group Permission", user=user).get("write"):
 		return True
 
 	apply_strict_user_permissions = frappe.get_system_settings("apply_strict_user_permissions")
