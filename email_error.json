@@ -1,0 +1,908 @@
+{
+    "name": "6ea622e661",
+    "owner": "Administrator",
+    "creation": "2024-02-19 16:28:52.249451",
+    "modified": "2024-02-19 16:28:52.249451",
+    "modified_by": "Administrator",
+    "docstatus": 0,
+    "idx": 0,
+    "seen": 1,
+    "method": "send_mail",
+    "error": "Traceback with variables (most recent call last):
+  File \"apps/frappe/frappe/utils/background_jobs.py\", line 191, in execute_job
+    retval = method(**kwargs)
+      site = 'station.improwised.com'
+      method = <function send_mail at 0x7fcd516eb1a0>
+      event = None
+      job_name = 'email_queue_sendmail_a6325a22b0'
+      kwargs = {'email_queue_name': 'a6325a22b0'}
+      user = 'Administrator'
+      is_async = True
+      retry = 0
+      retval = None
+      method_name = 'send_mail'
+      before_job_task = 'frappe.monitor.start'
+  File \"apps/frappe/frappe/email/doctype/email_queue/email_queue.py\", line 195, in send_mail
+    record.send(smtp_server_instance=smtp_server_instance)
+      email_queue_name = 'a6325a22b0'
+      smtp_server_instance = None
+      record = <EmailQueue: a6325a22b0>
+  File \"apps/frappe/frappe/email/doctype/email_queue/email_queue.py\", line 138, in send
+    message = ctx.build_message(recipient.recipient)
+      self = <EmailQueue: a6325a22b0>
+      smtp_server_instance = None
+      ctx = <frappe.email.doctype.email_queue.email_queue.SendMailContext object at 0x7fcd50db7610>
+      message = None
+      recipient = <EmailQueueRecipient: 0367ee8d46 parent=a6325a22b0>
+  File \"apps/frappe/frappe/email/doctype/email_queue/email_queue.py\", line 290, in build_message
+    message = self.include_attachments(message)
+      self = <frappe.email.doctype.email_queue.email_queue.SendMailContext object at 0x7fcd50db7610>
+      recipient_email = 'email@email.email'
+      message = 'Content-Type: multipart/mixed; boundary=\"===============8981420201833425136==\"\\r\
+MIME-Version: 1.0\\r\
+Message-Id: <170834012733.8.17248131305498399727@station.improwised.com>\\r\
+Disposition-Notification-To: Shailesh Davara <shailesh@improwised.com>\\r\
+X-Original-From: Shailesh Davara <shailesh@improwised.com>\\r\
+Subject: Invoice: Feb 2024\\r\
+From: Shailesh Davara <shailesh@improwised.com>\\r\
+To: email@email.email\\r\
+Date: Mon, 19 Feb 2024 10:55:27 -0000\\r\
+Reply-To: shailesh@improwised.com\\r\
+CC: shailesh@improwised.com\\r\
+X-Frappe-Site: https://station.improwised.com\\r\
+\\r\
+--===============8981420201833425136==\\r\
+Content-Type: multipart/alternative; boundary=\"===============3503396408279336175==\"\\r\
+MIME-Version: 1.0\\r\
+\\r\
+--===============3503396408279336175==\\r\
+Content-Type: text/plain; charset=\"utf-8\"\\r\
+MIME-Version: 1.0\\r\
+Content-Transfer-Encoding: quoted-printable\\r\
+\\r\
+Hello\\r\
+\\r\
+Please find attached invoice for the January 2024 work engagement.\\r\
+\\r\
+Thank you...
+  File \"apps/frappe/frappe/email/doctype/email_queue/email_queue.py\", line 349, in include_attachments
+    print_format_file = frappe.attach_print(**attachment)
+      self = <frappe.email.doctype.email_queue.email_queue.SendMailContext object at 0x7fcd50db7610>
+      message = 'Content-Type: multipart/mixed; boundary=\"===============8981420201833425136==\"\\r\
+MIME-Version: 1.0\\r\
+Message-Id: <170834012733.8.17248131305498399727@station.improwised.com>\\r\
+Disposition-Notification-To: Shailesh Davara <shailesh@improwised.com>\\r\
+X-Original-From: Shailesh Davara <shailesh@improwised.com>\\r\
+Subject: Invoice: Feb 2024\\r\
+From: Shailesh Davara <shailesh@improwised.com>\\r\
+To: email@email.email\\r\
+Date: Mon, 19 Feb 2024 10:55:27 -0000\\r\
+Reply-To: shailesh@improwised.com\\r\
+CC: shailesh@improwised.com\\r\
+X-Frappe-Site: https://station.improwised.com\\r\
+\\r\
+--===============8981420201833425136==\\r\
+Content-Type: multipart/alternative; boundary=\"===============3503396408279336175==\"\\r\
+MIME-Version: 1.0\\r\
+\\r\
+--===============3503396408279336175==\\r\
+Content-Type: text/plain; charset=\"utf-8\"\\r\
+MIME-Version: 1.0\\r\
+Content-Transfer-Encoding: quoted-printable\\r\
+\\r\
+Hello\\r\
+\\r\
+Please find attached invoice for the January 2024 work engagement.\\r\
+\\r\
+Thank you...
+      message_obj = <email.message.EmailMessage object at 0x7fcd50780dd0>
+      attachments = [{'print_format': 'InvoiceTemplate', 'html': '', 'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'lang': 'en', 'print_letterhead': '1'}]
+      attachment = {'print_format': 'InvoiceTemplate', 'html': '', 'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'lang': 'en', 'print_letterhead': '1'}
+      file_filters = {}
+  File \"apps/frappe/frappe/__init__.py\", line 2075, in attach_print
+    else get_print(doctype, name, **kwargs)
+      doctype = 'Sales Invoice'
+      name = 'SINV-24-00009'
+      file_name = None
+      print_format = 'InvoiceTemplate'
+      style = None
+      html = ''
+      doc = None
+      lang = 'en'
+      print_letterhead = '1'
+      password = ********
+      letterhead = None
+      print_language = <function print_language at 0x7fcd52db76a0>
+      scrub_urls = <function scrub_urls at 0x7fcd53ce6fc0>
+      get_pdf = <function get_pdf at 0x7fcd51a68cc0>
+      print_settings = {'add_draft_heading': '1', 'allow_page_break_inside_tables': '0', 'allow_print_for_cancelled': '0', 'allow_print_for_draft': '1', 'attach_view_link': '1', 'compact_item_print': '0', 'creation': '2018-04-21 19:05:58.355394', 'docstatus': '0', 'font': 'Default', 'font_size': '0', 'idx': '0', 'modified': '2018-05-01 15:42:00.602816', 'modified_by': 'rakshit@improwised.com', 'name': 'Print Settings', 'owner': 'Administrator', 'parent': None, 'parentfield': None, 'parenttype': None, 'pdf_page_size': 'A4', 'print_style': 'Modern', 'print_taxes_with_zero_amount': '0', 'repeat_header_footer': '1', 'send_print_as_pdf': '1', 'with_letterhead': '0'}
+      kwargs = {'print_format': 'InvoiceTemplate', 'style': None, 'html': '', 'doc': None, 'no_letterhead': False, 'letterhead': None, 'password': '********', 'as_pdf': True}
+      content = ''
+      ext = '.pdf'
+  File \"apps/frappe/frappe/__init__.py\", line 2031, in get_print
+    html = get_response_content(\"printview\")
+      doctype = 'Sales Invoice'
+      name = 'SINV-24-00009'
+      print_format = 'InvoiceTemplate'
+      style = None
+      html = ''
+      as_pdf = True
+      doc = None
+      output = None
+      no_letterhead = False
+      password = ********
+      pdf_options = {}
+      letterhead = None
+      get_pdf = <function get_pdf at 0x7fcd51a68cc0>
+      get_response_content = <function get_response_content at 0x7fcd507eb4c0>
+  File \"apps/frappe/frappe/website/serve.py\", line 32, in get_response_content
+    response = get_response(path, http_status_code)
+      path = 'printview'
+      http_status_code = 200
+  File \"apps/frappe/frappe/website/serve.py\", line 26, in get_response
+    response = ErrorPage(exception=e).render()
+      path = 'printview'
+      http_status_code = 200
+      response = None
+      endpoint = 'printview'
+      path_resolver = <frappe.website.path_resolver.PathResolver object at 0x7fcd50a07c10>
+      renderer_instance = <frappe.website.page_renderers.template_page.TemplatePage object at 0x7fcd5015b050>
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 84, in render
+    html = self.get_html()
+      self = <frappe.website.page_renderers.error_page.ErrorPage object at 0x7fcd4b73fc50>
+  File \"apps/frappe/frappe/website/utils.py\", line 517, in cache_html_decorator
+    html = func(*args, **kwargs)
+      args = (<frappe.website.page_renderers.error_page.ErrorPage object at 0x7fcd4b73fc50>,)
+      kwargs = {}
+      html = None
+      page_cache = None
+      func = <function TemplatePage.get_html at 0x7fcd507ea3e0>
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 101, in get_html
+    html = self.render_template()
+      self = <frappe.website.page_renderers.error_page.ErrorPage object at 0x7fcd4b73fc50>
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 236, in render_template
+    html = frappe.render_template(self.source, self.context, safe_render=safe_render)
+      self = <frappe.website.page_renderers.error_page.ErrorPage object at 0x7fcd4b73fc50>
+      safe_render = True
+  File \"apps/frappe/frappe/utils/jinja.py\", line 94, in render_template
+    return get_jenv().from_string(template).render(context)
+      template = '{% extends \"templates/web.html\" %}\
+\
+{% block title %}Error{% endblock %}\
+\
+{%- block head_include %}\
+<link rel=\"stylesheet\" href=\"/assets/frappe/css/hljs-night-owl.css\">\
+{% endblock -%}\
+\
+\
+{% block page_content %}\
+<style>\
+\\t.error-content {\
+\\t\\tborder-radius: 8px;\
+\\t\\tbackground-color: #f5f7fa;\
+\\t\\tmargin: 3rem auto;\
+\\t}\
+\
+\\tcode::-webkit-scrollbar {\
+\\t\\tdisplay: none;\
+\\t}\
+\\t{% include \"templates/styles/card_style.css\"%}\
+</style>\
+<script></script>\
+<div class=\"page-card\">\
+\\t<div class=\"page-card-head\">\
+\\t\\t<span class=\"indicator red\">{{ error_title }}</span>\
+\\t</div>\
+\\t<p>{{ error_message }}</p>\
+\\t<div>\
+\\t\\t<a href=\"/\" class=\"btn btn-primary btn-sm\">{{ _(\"Home\") }}</a>\
+\\t</div>\
+</div>\
+<p class=\"text-muted text-center small\" style=\"margin-top: -20px;\">\
+\\t{{ _(\"Error Code: {0}\").format(http_status_code) }}\
+</p>\
+<div class=\"text-center mt-3\">\
+\\t<p class=\"text-muted text-center small\">\
+\\t\\tIf you don\\'t know what just happened, and wish to file a ticket\
+\\...
+      context = {'top_bar_items': [], 'footer_items': [], 'post_login': [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}], 'brand_html': \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\", 'disable_signup': 1, 'navbar_template': 'Standard Navbar', 'footer_template': 'Standard Footer', 'facebook_share': 0, 'google_plus_one': 0, 'twitter_share': 0, 'linked_in_share': 0, 'encoded_title': '', 'web_include_js': ['website_script.js', 'erpnext-web.bundle.js'], 'web_include_css': ['erpnext-web.bundle.css'], 'favicon': '/assets/erpnext/images/erpnext-favicon.svg', 'splash_image': '/assets/erpnext/images/erpnext-logo.svg', 'theme': <WebsiteTheme: Standard>, 'hide_login': 0, 'read_only_mode': False, 'boot': {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}, 'http_status_cod...
+      is_path = None
+      safe_render = True
+      TemplateError = <class 'jinja2.exceptions.TemplateError'>
+      _ = <function _ at 0x7fcd55205a80>
+      get_traceback = <function get_traceback at 0x7fcd53cbe660>
+      throw = <function throw at 0x7fcd53cbeb60>
+  File \"env/lib/python3.11/site-packages/jinja2/environment.py\", line 1301, in render
+    self.environment.handle_exception()
+      self = <Template memory:7fcd4b73ce10>
+      args = ({'top_bar_items': [], 'footer_items': [], 'post_login': [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}], 'brand_html': \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\", 'disable_signup': 1, 'navbar_template': 'Standard Navbar', 'footer_template': 'Standard Footer', 'facebook_share': 0, 'google_plus_one': 0, 'twitter_share': 0, 'linked_in_share': 0, 'encoded_title': '', 'web_include_js': ['website_script.js', 'erpnext-web.bundle.js'], 'web_include_css': ['erpnext-web.bundle.css'], 'favicon': '/assets/erpnext/images/erpnext-favicon.svg', 'splash_image': '/assets/erpnext/images/erpnext-logo.svg', 'theme': <WebsiteTheme: Standard>, 'hide_login': 0, 'read_only_mode': False, 'boot': {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}, 'http_status_co...
+      kwargs = {}
+      ctx = <Context {'range': <class 'range'>, 'dict': <class 'dict'>, 'lipsum': <function generate_lorem_ipsum at 0x7fcd5032f4c0>, 'cycler': <class 'jinja2.utils.Cycler'>, 'joiner': <class 'jinja2.utils.Joiner'>, 'namespace': <class 'jinja2.utils.Namespace'>, 'json': {'loads': <function loads at 0x7fcd55131e40>, 'dumps': <function dumps at 0x7fcd551316c0>}, 'as_json': <function as_json at 0x7fcd53ca99e0>, 'log': <function log at 0x7fcd53cbe840>, '_dict': <class 'frappe._dict'>, 'args': {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}, 'frappe': {'call': <function call_whitelisted_function at 0x7fcd50baa340>, 'flags': {}, 'format': <function format_value at 0x7fcd53ca9bc0>, 'format_value': <function format_value at 0x7fcd53ca9bc0>, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss', 'format_date': <function global_date_format at 0x7fcd53ce45e0>, 'form_dict': {'doctype': 'Sales Invoice', '...
+  File \"env/lib/python3.11/site-packages/jinja2/environment.py\", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+      self = <frappe.utils.jinja.get_jenv.<locals>.FrappeSandboxedEnvironment object at 0x7fcd4bda01d0>
+      source = None
+      rewrite_traceback_stack = <function rewrite_traceback_stack at 0x7fcd4b71ad40>
+  File \"<template>\", line 1, in top-level template code
+      range = <class 'range'>
+      dict = <class 'dict'>
+      lipsum = <function generate_lorem_ipsum at 0x7fcd5032f4c0>
+      cycler = <class 'jinja2.utils.Cycler'>
+      joiner = <class 'jinja2.utils.Joiner'>
+      namespace = <class 'jinja2.utils.Namespace'>
+      json = {'loads': <function loads at 0x7fcd55131e40>, 'dumps': <function dumps at 0x7fcd551316c0>}
+      as_json = <function as_json at 0x7fcd53ca99e0>
+      log = <function log at 0x7fcd53cbe840>
+      _dict = <class 'frappe._dict'>
+      args = {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}
+      frappe = {'call': <function call_whitelisted_function at 0x7fcd50baa340>, 'flags': {}, 'format': <function format_value at 0x7fcd53ca9bc0>, 'format_value': <function format_value at 0x7fcd53ca9bc0>, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss', 'format_date': <function global_date_format at 0x7fcd53ce45e0>, 'form_dict': {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}, 'bold': <function bold at 0x7fcd53caa480>, 'copy_doc': <function copy_doc at 0x7fcd53ca9440>, 'errprint': <function errprint at 0x7fcd53cbe700>, 'qb': <class 'frappe.query_builder.builder.MariaDB'>, 'get_meta': <function get_meta at 0x7fcd53cbff60>, 'new_doc': <function new_doc at 0x7fcd53cbf880>, 'get_doc': <function get_doc at 0x7fcd53cbfd80>, 'get_mapped_doc': <function get_mapped_doc at 0x7fcd50b967a0>, 'get_last_doc': <function get_last_doc at 0x7fcd53cbfe20>, 'get_cached_doc': <function get_cached_doc at 0x7fc...
+      FrappeClient = <class 'frappe.frappeclient.FrappeClient'>
+      style = {'border_color': '#d1d8dd'}
+      get_toc = <function get_toc at 0x7fcd50c7d3a0>
+      get_next_link = <function get_next_link at 0x7fcd50c7d440>
+      _ = <function _ at 0x7fcd55205a80>
+      get_shade = <function get_shade at 0x7fcd50c7d260>
+      scrub = <function scrub at 0x7fcd52ad4fe0>
+      guess_mimetype = <function guess_type at 0x7fcd54c73600>
+      html2text = <function html2text at 0x7fcd520ae200>
+      dev_server = 0
+      run_script = <function run_script at 0x7fcd50baa3e0>
+      is_job_queued = <function is_job_queued at 0x7fcd50baa200>
+      get_visible_columns = <function get_visible_columns at 0x7fcd50ba9b20>
+      __builtins__ = {'__build_class__': <built-in function __build_class__>, 'None': None, 'False': False, 'True': True, 'abs': <built-in function abs>, 'bool': <class 'bool'>, 'bytes': <class 'bytes'>, 'callable': <built-in function callable>, 'chr': <built-in function chr>, 'complex': <class 'complex'>, 'divmod': <built-in function divmod>, 'float': <class 'float'>, 'hash': <built-in function hash>, 'hex': <built-in function hex>, 'id': <built-in function id>, 'int': <class 'int'>, 'isinstance': <built-in function isinstance>, 'issubclass': <built-in function issubclass>, 'len': <built-in function len>, 'oct': <built-in function oct>, 'ord': <built-in function ord>, 'pow': <built-in function pow>, 'range': <class 'range'>, 'repr': <built-in function repr>, 'round': <built-in function round>, 'slice': <class 'slice'>, 'sorted': <built-in function sorted>, 'str': <class 'str'>, 'tuple': <class 'tuple'>, 'zip': <class 'zip'>, 'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'Assertion...
+      _write_ = <function _write at 0x7fcd50baaca0>
+      _getitem_ = <function _getitem at 0x7fcd50baaa20>
+      _getattr_ = <function _getattr_for_safe_exec at 0x7fcd50baaac0>
+      _getiter_ = <built-in function iter>
+      _iter_unpack_sequence_ = <function guarded_iter_unpack_sequence at 0x7fcd50ce9a80>
+      abs = <built-in function abs>
+      all = <built-in function all>
+      any = <built-in function any>
+      bool = <class 'bool'>
+      enumerate = <class 'enumerate'>
+      isinstance = <built-in function isinstance>
+      issubclass = <built-in function issubclass>
+      list = <class 'list'>
+      max = <built-in function max>
+      min = <built-in function min>
+      set = <class 'set'>
+      sorted = <built-in function sorted>
+      sum = <built-in function sum>
+      tuple = <class 'tuple'>
+      bundled_asset = <function bundled_asset at 0x7fcd516e85e0>
+      get_dom_id = <function get_dom_id at 0x7fcd516e8400>
+      include_script = <function include_script at 0x7fcd516e84a0>
+      include_style = <function include_style at 0x7fcd516e8540>
+      inspect = <function inspect at 0x7fcd516e8220>
+      is_rtl = <function is_rtl at 0x7fcd516e8680>
+      resolve_class = <function resolve_class at 0x7fcd516f3c40>
+      web_block = <function web_block at 0x7fcd516e82c0>
+      web_blocks = <function web_blocks at 0x7fcd516e8360>
+      get_country = <function get_country at 0x7fcd4bdfe5c0>
+      get_state = <function get_state at 0x7fcd4bdfe980>
+      add_spacing = <function add_spacing at 0x7fcd4bc67100>
+      get_supply_type = <function get_supply_type at 0x7fcd4b6d51c0>
+      get_sub_supply_type = <function get_sub_supply_type at 0x7fcd4b6d4cc0>
+      get_e_waybill_qr_code = <function get_e_waybill_qr_code at 0x7fcd4b718ae0>
+      get_qr_code = <function get_qr_code at 0x7fcd4b718b80>
+      get_transport_type = <function get_transport_type at 0x7fcd4b718a40>
+      get_transport_mode = <function get_transport_mode at 0x7fcd4b7189a0>
+      get_ewaybill_barcode = <function get_ewaybill_barcode at 0x7fcd4b718c20>
+      get_e_invoice_item_fields = <function get_e_invoice_item_fields at 0x7fcd4b718e00>
+      get_e_invoice_amount_fields = <function get_e_invoice_amount_fields at 0x7fcd4b718ea0>
+      top_bar_items = []
+      footer_items = []
+      post_login = [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}]
+      brand_html = \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\"
+      disable_signup = 1
+      navbar_template = 'Standard Navbar'
+      footer_template = 'Standard Footer'
+      facebook_share = 0
+      google_plus_one = 0
+      twitter_share = 0
+      linked_in_share = 0
+      encoded_title = ''
+      web_include_js = ['website_script.js', 'erpnext-web.bundle.js']
+      web_include_css = ['erpnext-web.bundle.css']
+      favicon = '/assets/erpnext/images/erpnext-favicon.svg'
+      splash_image = '/assets/erpnext/images/erpnext-logo.svg'
+      theme = <WebsiteTheme: Standard>
+      hide_login = 0
+      read_only_mode = False
+      boot = {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}
+      http_status_code = 500
+      error_title = 'Uncaught Server Exception'
+      error_message = 'There was an error building this page'
+      base_template = None
+      basepath = 'apps/frappe/frappe/www'
+      basename = 'apps/frappe/frappe/www/error'
+      name = 'error'
+      path = 'error'
+      route = 'error'
+      template = 'www/error.html'
+      build_version = 'zM5kF28Z'
+      no_cache = 1
+      error = 'Traceback (most recent call last):\
+  File \"apps/frappe/frappe/website/serve.py\", line 18, in get_response\
+    response = renderer_instance.render()\
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 84, in render\
+    html = self.get_html()\
+           ^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/utils.py\", line 517, in cache_html_decorator\
+    html = func(*args, **kwargs)\
+           ^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 101, in get_html\
+    html = self.render_template()\
+           ^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 236, in render_template\
+    html = frappe.render_template(self.source, self.context, safe_render=safe_render)\
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/utils/jinja.py\", line 94, in render_template\
+   ...
+      developer_mode = None
+      title = 'Error'
+      fullname = 'Administrator'
+      user_image = None
+      user = 'Administrator'
+      sidebar_items = [{'name': 'd48e9fc7f6', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 1, 'title': 'Projects', 'enabled': 1, 'route': '/project', 'reference_doctype': 'Project', 'role': None, 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': 'e2f49c9de8', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 2, 'title': 'Request for Quotations', 'enabled': 1, 'route': '/rfq', 'reference_doctype': 'Request for Quotation', 'role': 'Supplier', 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': '293ba964ea', 'owner': '...
+      metatags = {'title': 'Error', 'language': 'en', 'og:type': 'article', 'og:title': 'Error', 'twitter:title': 'Error', 'twitter:card': 'summary'}
+      base_template_path = 'templates/base.html'
+      shopping_cart_enabled = 1
+      _context_dict = {'top_bar_items': [], 'footer_items': [], 'post_login': [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}], 'brand_html': \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\", 'disable_signup': 1, 'navbar_template': 'Standard Navbar', 'footer_template': 'Standard Footer', 'facebook_share': 0, 'google_plus_one': 0, 'twitter_share': 0, 'linked_in_share': 0, 'encoded_title': '', 'web_include_js': ['website_script.js', 'erpnext-web.bundle.js'], 'web_include_css': ['erpnext-web.bundle.css'], 'favicon': '/assets/erpnext/images/erpnext-favicon.svg', 'splash_image': '/assets/erpnext/images/erpnext-logo.svg', 'theme': <WebsiteTheme: Standard>, 'hide_login': 0, 'read_only_mode': False, 'boot': {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}, 'http_status_cod...
+      canonical = 'https://station.improwised.com/error'
+      url_prefix = ''
+      pathname = 'printview'
+      docs_base_url = '/docs'
+  File \"apps/frappe/frappe/templates/web.html\", line 1, in top-level template code
+    {% extends base_template_path %}
+      range = <class 'range'>
+      dict = <class 'dict'>
+      lipsum = <function generate_lorem_ipsum at 0x7fcd5032f4c0>
+      cycler = <class 'jinja2.utils.Cycler'>
+      joiner = <class 'jinja2.utils.Joiner'>
+      namespace = <class 'jinja2.utils.Namespace'>
+      json = {'loads': <function loads at 0x7fcd55131e40>, 'dumps': <function dumps at 0x7fcd551316c0>}
+      as_json = <function as_json at 0x7fcd53ca99e0>
+      log = <function log at 0x7fcd53cbe840>
+      _dict = <class 'frappe._dict'>
+      args = {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}
+      frappe = {'call': <function call_whitelisted_function at 0x7fcd50baa340>, 'flags': {}, 'format': <function format_value at 0x7fcd53ca9bc0>, 'format_value': <function format_value at 0x7fcd53ca9bc0>, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss', 'format_date': <function global_date_format at 0x7fcd53ce45e0>, 'form_dict': {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}, 'bold': <function bold at 0x7fcd53caa480>, 'copy_doc': <function copy_doc at 0x7fcd53ca9440>, 'errprint': <function errprint at 0x7fcd53cbe700>, 'qb': <class 'frappe.query_builder.builder.MariaDB'>, 'get_meta': <function get_meta at 0x7fcd53cbff60>, 'new_doc': <function new_doc at 0x7fcd53cbf880>, 'get_doc': <function get_doc at 0x7fcd53cbfd80>, 'get_mapped_doc': <function get_mapped_doc at 0x7fcd50b967a0>, 'get_last_doc': <function get_last_doc at 0x7fcd53cbfe20>, 'get_cached_doc': <function get_cached_doc at 0x7fc...
+      FrappeClient = <class 'frappe.frappeclient.FrappeClient'>
+      style = {'border_color': '#d1d8dd'}
+      get_toc = <function get_toc at 0x7fcd50c7d3a0>
+      get_next_link = <function get_next_link at 0x7fcd50c7d440>
+      _ = <function _ at 0x7fcd55205a80>
+      get_shade = <function get_shade at 0x7fcd50c7d260>
+      scrub = <function scrub at 0x7fcd52ad4fe0>
+      guess_mimetype = <function guess_type at 0x7fcd54c73600>
+      html2text = <function html2text at 0x7fcd520ae200>
+      dev_server = 0
+      run_script = <function run_script at 0x7fcd50baa3e0>
+      is_job_queued = <function is_job_queued at 0x7fcd50baa200>
+      get_visible_columns = <function get_visible_columns at 0x7fcd50ba9b20>
+      __builtins__ = {'__build_class__': <built-in function __build_class__>, 'None': None, 'False': False, 'True': True, 'abs': <built-in function abs>, 'bool': <class 'bool'>, 'bytes': <class 'bytes'>, 'callable': <built-in function callable>, 'chr': <built-in function chr>, 'complex': <class 'complex'>, 'divmod': <built-in function divmod>, 'float': <class 'float'>, 'hash': <built-in function hash>, 'hex': <built-in function hex>, 'id': <built-in function id>, 'int': <class 'int'>, 'isinstance': <built-in function isinstance>, 'issubclass': <built-in function issubclass>, 'len': <built-in function len>, 'oct': <built-in function oct>, 'ord': <built-in function ord>, 'pow': <built-in function pow>, 'range': <class 'range'>, 'repr': <built-in function repr>, 'round': <built-in function round>, 'slice': <class 'slice'>, 'sorted': <built-in function sorted>, 'str': <class 'str'>, 'tuple': <class 'tuple'>, 'zip': <class 'zip'>, 'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'Assertion...
+      _write_ = <function _write at 0x7fcd50baaca0>
+      _getitem_ = <function _getitem at 0x7fcd50baaa20>
+      _getattr_ = <function _getattr_for_safe_exec at 0x7fcd50baaac0>
+      _getiter_ = <built-in function iter>
+      _iter_unpack_sequence_ = <function guarded_iter_unpack_sequence at 0x7fcd50ce9a80>
+      abs = <built-in function abs>
+      all = <built-in function all>
+      any = <built-in function any>
+      bool = <class 'bool'>
+      enumerate = <class 'enumerate'>
+      isinstance = <built-in function isinstance>
+      issubclass = <built-in function issubclass>
+      list = <class 'list'>
+      max = <built-in function max>
+      min = <built-in function min>
+      set = <class 'set'>
+      sorted = <built-in function sorted>
+      sum = <built-in function sum>
+      tuple = <class 'tuple'>
+      bundled_asset = <function bundled_asset at 0x7fcd516e85e0>
+      get_dom_id = <function get_dom_id at 0x7fcd516e8400>
+      include_script = <function include_script at 0x7fcd516e84a0>
+      include_style = <function include_style at 0x7fcd516e8540>
+      inspect = <function inspect at 0x7fcd516e8220>
+      is_rtl = <function is_rtl at 0x7fcd516e8680>
+      resolve_class = <function resolve_class at 0x7fcd516f3c40>
+      web_block = <function web_block at 0x7fcd516e82c0>
+      web_blocks = <function web_blocks at 0x7fcd516e8360>
+      get_country = <function get_country at 0x7fcd4bdfe5c0>
+      get_state = <function get_state at 0x7fcd4bdfe980>
+      add_spacing = <function add_spacing at 0x7fcd4bc67100>
+      get_supply_type = <function get_supply_type at 0x7fcd4b6d51c0>
+      get_sub_supply_type = <function get_sub_supply_type at 0x7fcd4b6d4cc0>
+      get_e_waybill_qr_code = <function get_e_waybill_qr_code at 0x7fcd4b718ae0>
+      get_qr_code = <function get_qr_code at 0x7fcd4b718b80>
+      get_transport_type = <function get_transport_type at 0x7fcd4b718a40>
+      get_transport_mode = <function get_transport_mode at 0x7fcd4b7189a0>
+      get_ewaybill_barcode = <function get_ewaybill_barcode at 0x7fcd4b718c20>
+      get_e_invoice_item_fields = <function get_e_invoice_item_fields at 0x7fcd4b718e00>
+      get_e_invoice_amount_fields = <function get_e_invoice_amount_fields at 0x7fcd4b718ea0>
+      top_bar_items = []
+      footer_items = []
+      post_login = [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}]
+      brand_html = \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\"
+      disable_signup = 1
+      navbar_template = 'Standard Navbar'
+      footer_template = 'Standard Footer'
+      facebook_share = 0
+      google_plus_one = 0
+      twitter_share = 0
+      linked_in_share = 0
+      encoded_title = ''
+      web_include_js = ['website_script.js', 'erpnext-web.bundle.js']
+      web_include_css = ['erpnext-web.bundle.css']
+      favicon = '/assets/erpnext/images/erpnext-favicon.svg'
+      splash_image = '/assets/erpnext/images/erpnext-logo.svg'
+      theme = <WebsiteTheme: Standard>
+      hide_login = 0
+      read_only_mode = False
+      boot = {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}
+      http_status_code = 500
+      error_title = 'Uncaught Server Exception'
+      error_message = 'There was an error building this page'
+      base_template = None
+      basepath = 'apps/frappe/frappe/www'
+      basename = 'apps/frappe/frappe/www/error'
+      name = 'error'
+      path = 'error'
+      route = 'error'
+      template = 'www/error.html'
+      build_version = 'zM5kF28Z'
+      no_cache = 1
+      error = 'Traceback (most recent call last):\
+  File \"apps/frappe/frappe/website/serve.py\", line 18, in get_response\
+    response = renderer_instance.render()\
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 84, in render\
+    html = self.get_html()\
+           ^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/utils.py\", line 517, in cache_html_decorator\
+    html = func(*args, **kwargs)\
+           ^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 101, in get_html\
+    html = self.render_template()\
+           ^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 236, in render_template\
+    html = frappe.render_template(self.source, self.context, safe_render=safe_render)\
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/utils/jinja.py\", line 94, in render_template\
+   ...
+      developer_mode = None
+      title = 'Error'
+      fullname = 'Administrator'
+      user_image = None
+      user = 'Administrator'
+      sidebar_items = [{'name': 'd48e9fc7f6', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 1, 'title': 'Projects', 'enabled': 1, 'route': '/project', 'reference_doctype': 'Project', 'role': None, 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': 'e2f49c9de8', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 2, 'title': 'Request for Quotations', 'enabled': 1, 'route': '/rfq', 'reference_doctype': 'Request for Quotation', 'role': 'Supplier', 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': '293ba964ea', 'owner': '...
+      metatags = {'title': 'Error', 'language': 'en', 'og:type': 'article', 'og:title': 'Error', 'twitter:title': 'Error', 'twitter:card': 'summary'}
+      base_template_path = 'templates/base.html'
+      shopping_cart_enabled = 1
+      _context_dict = {'top_bar_items': [], 'footer_items': [], 'post_login': [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}], 'brand_html': \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\", 'disable_signup': 1, 'navbar_template': 'Standard Navbar', 'footer_template': 'Standard Footer', 'facebook_share': 0, 'google_plus_one': 0, 'twitter_share': 0, 'linked_in_share': 0, 'encoded_title': '', 'web_include_js': ['website_script.js', 'erpnext-web.bundle.js'], 'web_include_css': ['erpnext-web.bundle.css'], 'favicon': '/assets/erpnext/images/erpnext-favicon.svg', 'splash_image': '/assets/erpnext/images/erpnext-logo.svg', 'theme': <WebsiteTheme: Standard>, 'hide_login': 0, 'read_only_mode': False, 'boot': {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}, 'http_status_cod...
+      canonical = 'https://station.improwised.com/error'
+      url_prefix = ''
+      pathname = 'printview'
+      docs_base_url = '/docs'
+  File \"apps/frappe/frappe/templates/base.html\", line 25, in top-level template code
+    {%- block head -%}
+      range = <class 'range'>
+      dict = <class 'dict'>
+      lipsum = <function generate_lorem_ipsum at 0x7fcd5032f4c0>
+      cycler = <class 'jinja2.utils.Cycler'>
+      joiner = <class 'jinja2.utils.Joiner'>
+      namespace = <class 'jinja2.utils.Namespace'>
+      json = {'loads': <function loads at 0x7fcd55131e40>, 'dumps': <function dumps at 0x7fcd551316c0>}
+      as_json = <function as_json at 0x7fcd53ca99e0>
+      log = <function log at 0x7fcd53cbe840>
+      _dict = <class 'frappe._dict'>
+      args = {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}
+      frappe = {'call': <function call_whitelisted_function at 0x7fcd50baa340>, 'flags': {}, 'format': <function format_value at 0x7fcd53ca9bc0>, 'format_value': <function format_value at 0x7fcd53ca9bc0>, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss', 'format_date': <function global_date_format at 0x7fcd53ce45e0>, 'form_dict': {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}, 'bold': <function bold at 0x7fcd53caa480>, 'copy_doc': <function copy_doc at 0x7fcd53ca9440>, 'errprint': <function errprint at 0x7fcd53cbe700>, 'qb': <class 'frappe.query_builder.builder.MariaDB'>, 'get_meta': <function get_meta at 0x7fcd53cbff60>, 'new_doc': <function new_doc at 0x7fcd53cbf880>, 'get_doc': <function get_doc at 0x7fcd53cbfd80>, 'get_mapped_doc': <function get_mapped_doc at 0x7fcd50b967a0>, 'get_last_doc': <function get_last_doc at 0x7fcd53cbfe20>, 'get_cached_doc': <function get_cached_doc at 0x7fc...
+      FrappeClient = <class 'frappe.frappeclient.FrappeClient'>
+      style = {'border_color': '#d1d8dd'}
+      get_toc = <function get_toc at 0x7fcd50c7d3a0>
+      get_next_link = <function get_next_link at 0x7fcd50c7d440>
+      _ = <function _ at 0x7fcd55205a80>
+      get_shade = <function get_shade at 0x7fcd50c7d260>
+      scrub = <function scrub at 0x7fcd52ad4fe0>
+      guess_mimetype = <function guess_type at 0x7fcd54c73600>
+      html2text = <function html2text at 0x7fcd520ae200>
+      dev_server = 0
+      run_script = <function run_script at 0x7fcd50baa3e0>
+      is_job_queued = <function is_job_queued at 0x7fcd50baa200>
+      get_visible_columns = <function get_visible_columns at 0x7fcd50ba9b20>
+      __builtins__ = {'__build_class__': <built-in function __build_class__>, 'None': None, 'False': False, 'True': True, 'abs': <built-in function abs>, 'bool': <class 'bool'>, 'bytes': <class 'bytes'>, 'callable': <built-in function callable>, 'chr': <built-in function chr>, 'complex': <class 'complex'>, 'divmod': <built-in function divmod>, 'float': <class 'float'>, 'hash': <built-in function hash>, 'hex': <built-in function hex>, 'id': <built-in function id>, 'int': <class 'int'>, 'isinstance': <built-in function isinstance>, 'issubclass': <built-in function issubclass>, 'len': <built-in function len>, 'oct': <built-in function oct>, 'ord': <built-in function ord>, 'pow': <built-in function pow>, 'range': <class 'range'>, 'repr': <built-in function repr>, 'round': <built-in function round>, 'slice': <class 'slice'>, 'sorted': <built-in function sorted>, 'str': <class 'str'>, 'tuple': <class 'tuple'>, 'zip': <class 'zip'>, 'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'Assertion...
+      _write_ = <function _write at 0x7fcd50baaca0>
+      _getitem_ = <function _getitem at 0x7fcd50baaa20>
+      _getattr_ = <function _getattr_for_safe_exec at 0x7fcd50baaac0>
+      _getiter_ = <built-in function iter>
+      _iter_unpack_sequence_ = <function guarded_iter_unpack_sequence at 0x7fcd50ce9a80>
+      abs = <built-in function abs>
+      all = <built-in function all>
+      any = <built-in function any>
+      bool = <class 'bool'>
+      enumerate = <class 'enumerate'>
+      isinstance = <built-in function isinstance>
+      issubclass = <built-in function issubclass>
+      list = <class 'list'>
+      max = <built-in function max>
+      min = <built-in function min>
+      set = <class 'set'>
+      sorted = <built-in function sorted>
+      sum = <built-in function sum>
+      tuple = <class 'tuple'>
+      bundled_asset = <function bundled_asset at 0x7fcd516e85e0>
+      get_dom_id = <function get_dom_id at 0x7fcd516e8400>
+      include_script = <function include_script at 0x7fcd516e84a0>
+      include_style = <function include_style at 0x7fcd516e8540>
+      inspect = <function inspect at 0x7fcd516e8220>
+      is_rtl = <function is_rtl at 0x7fcd516e8680>
+      resolve_class = <function resolve_class at 0x7fcd516f3c40>
+      web_block = <function web_block at 0x7fcd516e82c0>
+      web_blocks = <function web_blocks at 0x7fcd516e8360>
+      get_country = <function get_country at 0x7fcd4bdfe5c0>
+      get_state = <function get_state at 0x7fcd4bdfe980>
+      add_spacing = <function add_spacing at 0x7fcd4bc67100>
+      get_supply_type = <function get_supply_type at 0x7fcd4b6d51c0>
+      get_sub_supply_type = <function get_sub_supply_type at 0x7fcd4b6d4cc0>
+      get_e_waybill_qr_code = <function get_e_waybill_qr_code at 0x7fcd4b718ae0>
+      get_qr_code = <function get_qr_code at 0x7fcd4b718b80>
+      get_transport_type = <function get_transport_type at 0x7fcd4b718a40>
+      get_transport_mode = <function get_transport_mode at 0x7fcd4b7189a0>
+      get_ewaybill_barcode = <function get_ewaybill_barcode at 0x7fcd4b718c20>
+      get_e_invoice_item_fields = <function get_e_invoice_item_fields at 0x7fcd4b718e00>
+      get_e_invoice_amount_fields = <function get_e_invoice_amount_fields at 0x7fcd4b718ea0>
+      top_bar_items = []
+      footer_items = []
+      post_login = [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}]
+      brand_html = \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\"
+      disable_signup = 1
+      navbar_template = 'Standard Navbar'
+      footer_template = 'Standard Footer'
+      facebook_share = 0
+      google_plus_one = 0
+      twitter_share = 0
+      linked_in_share = 0
+      encoded_title = ''
+      web_include_js = ['website_script.js', 'erpnext-web.bundle.js']
+      web_include_css = ['erpnext-web.bundle.css']
+      favicon = '/assets/erpnext/images/erpnext-favicon.svg'
+      splash_image = '/assets/erpnext/images/erpnext-logo.svg'
+      theme = <WebsiteTheme: Standard>
+      hide_login = 0
+      read_only_mode = False
+      boot = {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}
+      http_status_code = 500
+      error_title = 'Uncaught Server Exception'
+      error_message = 'There was an error building this page'
+      base_template = None
+      basepath = 'apps/frappe/frappe/www'
+      basename = 'apps/frappe/frappe/www/error'
+      name = 'error'
+      path = 'error'
+      route = 'error'
+      template = 'www/error.html'
+      build_version = 'zM5kF28Z'
+      no_cache = 1
+      error = 'Traceback (most recent call last):\
+  File \"apps/frappe/frappe/website/serve.py\", line 18, in get_response\
+    response = renderer_instance.render()\
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 84, in render\
+    html = self.get_html()\
+           ^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/utils.py\", line 517, in cache_html_decorator\
+    html = func(*args, **kwargs)\
+           ^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 101, in get_html\
+    html = self.render_template()\
+           ^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 236, in render_template\
+    html = frappe.render_template(self.source, self.context, safe_render=safe_render)\
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/utils/jinja.py\", line 94, in render_template\
+   ...
+      developer_mode = None
+      title = 'Error'
+      fullname = 'Administrator'
+      user_image = None
+      user = 'Administrator'
+      sidebar_items = [{'name': 'd48e9fc7f6', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 1, 'title': 'Projects', 'enabled': 1, 'route': '/project', 'reference_doctype': 'Project', 'role': None, 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': 'e2f49c9de8', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 2, 'title': 'Request for Quotations', 'enabled': 1, 'route': '/rfq', 'reference_doctype': 'Request for Quotation', 'role': 'Supplier', 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': '293ba964ea', 'owner': '...
+      metatags = {'title': 'Error', 'language': 'en', 'og:type': 'article', 'og:title': 'Error', 'twitter:title': 'Error', 'twitter:card': 'summary'}
+      base_template_path = 'templates/base.html'
+      shopping_cart_enabled = 1
+      _context_dict = {'top_bar_items': [], 'footer_items': [], 'post_login': [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}], 'brand_html': \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\", 'disable_signup': 1, 'navbar_template': 'Standard Navbar', 'footer_template': 'Standard Footer', 'facebook_share': 0, 'google_plus_one': 0, 'twitter_share': 0, 'linked_in_share': 0, 'encoded_title': '', 'web_include_js': ['website_script.js', 'erpnext-web.bundle.js'], 'web_include_css': ['erpnext-web.bundle.css'], 'favicon': '/assets/erpnext/images/erpnext-favicon.svg', 'splash_image': '/assets/erpnext/images/erpnext-logo.svg', 'theme': <WebsiteTheme: Standard>, 'hide_login': 0, 'read_only_mode': False, 'boot': {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}, 'http_status_cod...
+      canonical = 'https://station.improwised.com/error'
+      url_prefix = ''
+      pathname = 'printview'
+      docs_base_url = '/docs'
+  File \"apps/frappe/frappe/templates/base.html\", line 26, in block 'head'
+    {% include \"templates/includes/head.html\" %}
+      range = <class 'range'>
+      dict = <class 'dict'>
+      lipsum = <function generate_lorem_ipsum at 0x7fcd5032f4c0>
+      cycler = <class 'jinja2.utils.Cycler'>
+      joiner = <class 'jinja2.utils.Joiner'>
+      namespace = <class 'jinja2.utils.Namespace'>
+      json = {'loads': <function loads at 0x7fcd55131e40>, 'dumps': <function dumps at 0x7fcd551316c0>}
+      as_json = <function as_json at 0x7fcd53ca99e0>
+      log = <function log at 0x7fcd53cbe840>
+      _dict = <class 'frappe._dict'>
+      args = {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}
+      frappe = {'call': <function call_whitelisted_function at 0x7fcd50baa340>, 'flags': {}, 'format': <function format_value at 0x7fcd53ca9bc0>, 'format_value': <function format_value at 0x7fcd53ca9bc0>, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss', 'format_date': <function global_date_format at 0x7fcd53ce45e0>, 'form_dict': {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}, 'bold': <function bold at 0x7fcd53caa480>, 'copy_doc': <function copy_doc at 0x7fcd53ca9440>, 'errprint': <function errprint at 0x7fcd53cbe700>, 'qb': <class 'frappe.query_builder.builder.MariaDB'>, 'get_meta': <function get_meta at 0x7fcd53cbff60>, 'new_doc': <function new_doc at 0x7fcd53cbf880>, 'get_doc': <function get_doc at 0x7fcd53cbfd80>, 'get_mapped_doc': <function get_mapped_doc at 0x7fcd50b967a0>, 'get_last_doc': <function get_last_doc at 0x7fcd53cbfe20>, 'get_cached_doc': <function get_cached_doc at 0x7fc...
+      FrappeClient = <class 'frappe.frappeclient.FrappeClient'>
+      style = {'border_color': '#d1d8dd'}
+      get_toc = <function get_toc at 0x7fcd50c7d3a0>
+      get_next_link = <function get_next_link at 0x7fcd50c7d440>
+      _ = <function _ at 0x7fcd55205a80>
+      get_shade = <function get_shade at 0x7fcd50c7d260>
+      scrub = <function scrub at 0x7fcd52ad4fe0>
+      guess_mimetype = <function guess_type at 0x7fcd54c73600>
+      html2text = <function html2text at 0x7fcd520ae200>
+      dev_server = 0
+      run_script = <function run_script at 0x7fcd50baa3e0>
+      is_job_queued = <function is_job_queued at 0x7fcd50baa200>
+      get_visible_columns = <function get_visible_columns at 0x7fcd50ba9b20>
+      __builtins__ = {'__build_class__': <built-in function __build_class__>, 'None': None, 'False': False, 'True': True, 'abs': <built-in function abs>, 'bool': <class 'bool'>, 'bytes': <class 'bytes'>, 'callable': <built-in function callable>, 'chr': <built-in function chr>, 'complex': <class 'complex'>, 'divmod': <built-in function divmod>, 'float': <class 'float'>, 'hash': <built-in function hash>, 'hex': <built-in function hex>, 'id': <built-in function id>, 'int': <class 'int'>, 'isinstance': <built-in function isinstance>, 'issubclass': <built-in function issubclass>, 'len': <built-in function len>, 'oct': <built-in function oct>, 'ord': <built-in function ord>, 'pow': <built-in function pow>, 'range': <class 'range'>, 'repr': <built-in function repr>, 'round': <built-in function round>, 'slice': <class 'slice'>, 'sorted': <built-in function sorted>, 'str': <class 'str'>, 'tuple': <class 'tuple'>, 'zip': <class 'zip'>, 'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'Assertion...
+      _write_ = <function _write at 0x7fcd50baaca0>
+      _getitem_ = <function _getitem at 0x7fcd50baaa20>
+      _getattr_ = <function _getattr_for_safe_exec at 0x7fcd50baaac0>
+      _getiter_ = <built-in function iter>
+      _iter_unpack_sequence_ = <function guarded_iter_unpack_sequence at 0x7fcd50ce9a80>
+      abs = <built-in function abs>
+      all = <built-in function all>
+      any = <built-in function any>
+      bool = <class 'bool'>
+      enumerate = <class 'enumerate'>
+      isinstance = <built-in function isinstance>
+      issubclass = <built-in function issubclass>
+      list = <class 'list'>
+      max = <built-in function max>
+      min = <built-in function min>
+      set = <class 'set'>
+      sorted = <built-in function sorted>
+      sum = <built-in function sum>
+      tuple = <class 'tuple'>
+      bundled_asset = <function bundled_asset at 0x7fcd516e85e0>
+      get_dom_id = <function get_dom_id at 0x7fcd516e8400>
+      include_script = <function include_script at 0x7fcd516e84a0>
+      include_style = <function include_style at 0x7fcd516e8540>
+      inspect = <function inspect at 0x7fcd516e8220>
+      is_rtl = <function is_rtl at 0x7fcd516e8680>
+      resolve_class = <function resolve_class at 0x7fcd516f3c40>
+      web_block = <function web_block at 0x7fcd516e82c0>
+      web_blocks = <function web_blocks at 0x7fcd516e8360>
+      get_country = <function get_country at 0x7fcd4bdfe5c0>
+      get_state = <function get_state at 0x7fcd4bdfe980>
+      add_spacing = <function add_spacing at 0x7fcd4bc67100>
+      get_supply_type = <function get_supply_type at 0x7fcd4b6d51c0>
+      get_sub_supply_type = <function get_sub_supply_type at 0x7fcd4b6d4cc0>
+      get_e_waybill_qr_code = <function get_e_waybill_qr_code at 0x7fcd4b718ae0>
+      get_qr_code = <function get_qr_code at 0x7fcd4b718b80>
+      get_transport_type = <function get_transport_type at 0x7fcd4b718a40>
+      get_transport_mode = <function get_transport_mode at 0x7fcd4b7189a0>
+      get_ewaybill_barcode = <function get_ewaybill_barcode at 0x7fcd4b718c20>
+      get_e_invoice_item_fields = <function get_e_invoice_item_fields at 0x7fcd4b718e00>
+      get_e_invoice_amount_fields = <function get_e_invoice_amount_fields at 0x7fcd4b718ea0>
+      top_bar_items = []
+      footer_items = []
+      post_login = [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}]
+      brand_html = \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\"
+      disable_signup = 1
+      navbar_template = 'Standard Navbar'
+      footer_template = 'Standard Footer'
+      facebook_share = 0
+      google_plus_one = 0
+      twitter_share = 0
+      linked_in_share = 0
+      encoded_title = ''
+      web_include_js = ['website_script.js', 'erpnext-web.bundle.js']
+      web_include_css = ['erpnext-web.bundle.css']
+      favicon = '/assets/erpnext/images/erpnext-favicon.svg'
+      splash_image = '/assets/erpnext/images/erpnext-logo.svg'
+      theme = <WebsiteTheme: Standard>
+      hide_login = 0
+      read_only_mode = False
+      boot = {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}
+      http_status_code = 500
+      error_title = 'Uncaught Server Exception'
+      error_message = 'There was an error building this page'
+      base_template = None
+      basepath = 'apps/frappe/frappe/www'
+      basename = 'apps/frappe/frappe/www/error'
+      name = 'error'
+      path = 'error'
+      route = 'error'
+      template = 'www/error.html'
+      build_version = 'zM5kF28Z'
+      no_cache = 1
+      error = 'Traceback (most recent call last):\
+  File \"apps/frappe/frappe/website/serve.py\", line 18, in get_response\
+    response = renderer_instance.render()\
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 84, in render\
+    html = self.get_html()\
+           ^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/utils.py\", line 517, in cache_html_decorator\
+    html = func(*args, **kwargs)\
+           ^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 101, in get_html\
+    html = self.render_template()\
+           ^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 236, in render_template\
+    html = frappe.render_template(self.source, self.context, safe_render=safe_render)\
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/utils/jinja.py\", line 94, in render_template\
+   ...
+      developer_mode = None
+      title = 'Error'
+      fullname = 'Administrator'
+      user_image = None
+      user = 'Administrator'
+      sidebar_items = [{'name': 'd48e9fc7f6', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 1, 'title': 'Projects', 'enabled': 1, 'route': '/project', 'reference_doctype': 'Project', 'role': None, 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': 'e2f49c9de8', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 2, 'title': 'Request for Quotations', 'enabled': 1, 'route': '/rfq', 'reference_doctype': 'Request for Quotation', 'role': 'Supplier', 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': '293ba964ea', 'owner': '...
+      metatags = {'title': 'Error', 'language': 'en', 'og:type': 'article', 'og:title': 'Error', 'twitter:title': 'Error', 'twitter:card': 'summary'}
+      base_template_path = 'templates/base.html'
+      shopping_cart_enabled = 1
+      _context_dict = {'top_bar_items': [], 'footer_items': [], 'post_login': [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}], 'brand_html': \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\", 'disable_signup': 1, 'navbar_template': 'Standard Navbar', 'footer_template': 'Standard Footer', 'facebook_share': 0, 'google_plus_one': 0, 'twitter_share': 0, 'linked_in_share': 0, 'encoded_title': '', 'web_include_js': ['website_script.js', 'erpnext-web.bundle.js'], 'web_include_css': ['erpnext-web.bundle.css'], 'favicon': '/assets/erpnext/images/erpnext-favicon.svg', 'splash_image': '/assets/erpnext/images/erpnext-logo.svg', 'theme': <WebsiteTheme: Standard>, 'hide_login': 0, 'read_only_mode': False, 'boot': {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}, 'http_status_cod...
+      canonical = 'https://station.improwised.com/error'
+      url_prefix = ''
+      pathname = 'printview'
+      docs_base_url = '/docs'
+  File \"apps/frappe/frappe/templates/includes/head.html\", line 8, in top-level template code
+    {{ include_style('website.bundle.css') }}
+      range = <class 'range'>
+      dict = <class 'dict'>
+      lipsum = <function generate_lorem_ipsum at 0x7fcd5032f4c0>
+      cycler = <class 'jinja2.utils.Cycler'>
+      joiner = <class 'jinja2.utils.Joiner'>
+      namespace = <class 'jinja2.utils.Namespace'>
+      json = {'loads': <function loads at 0x7fcd55131e40>, 'dumps': <function dumps at 0x7fcd551316c0>}
+      as_json = <function as_json at 0x7fcd53ca99e0>
+      log = <function log at 0x7fcd53cbe840>
+      _dict = <class 'frappe._dict'>
+      args = {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}
+      frappe = {'call': <function call_whitelisted_function at 0x7fcd50baa340>, 'flags': {}, 'format': <function format_value at 0x7fcd53ca9bc0>, 'format_value': <function format_value at 0x7fcd53ca9bc0>, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss', 'format_date': <function global_date_format at 0x7fcd53ce45e0>, 'form_dict': {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}, 'bold': <function bold at 0x7fcd53caa480>, 'copy_doc': <function copy_doc at 0x7fcd53ca9440>, 'errprint': <function errprint at 0x7fcd53cbe700>, 'qb': <class 'frappe.query_builder.builder.MariaDB'>, 'get_meta': <function get_meta at 0x7fcd53cbff60>, 'new_doc': <function new_doc at 0x7fcd53cbf880>, 'get_doc': <function get_doc at 0x7fcd53cbfd80>, 'get_mapped_doc': <function get_mapped_doc at 0x7fcd50b967a0>, 'get_last_doc': <function get_last_doc at 0x7fcd53cbfe20>, 'get_cached_doc': <function get_cached_doc at 0x7fc...
+      FrappeClient = <class 'frappe.frappeclient.FrappeClient'>
+      style = {'border_color': '#d1d8dd'}
+      get_toc = <function get_toc at 0x7fcd50c7d3a0>
+      get_next_link = <function get_next_link at 0x7fcd50c7d440>
+      _ = <function _ at 0x7fcd55205a80>
+      get_shade = <function get_shade at 0x7fcd50c7d260>
+      scrub = <function scrub at 0x7fcd52ad4fe0>
+      guess_mimetype = <function guess_type at 0x7fcd54c73600>
+      html2text = <function html2text at 0x7fcd520ae200>
+      dev_server = 0
+      run_script = <function run_script at 0x7fcd50baa3e0>
+      is_job_queued = <function is_job_queued at 0x7fcd50baa200>
+      get_visible_columns = <function get_visible_columns at 0x7fcd50ba9b20>
+      __builtins__ = {'__build_class__': <built-in function __build_class__>, 'None': None, 'False': False, 'True': True, 'abs': <built-in function abs>, 'bool': <class 'bool'>, 'bytes': <class 'bytes'>, 'callable': <built-in function callable>, 'chr': <built-in function chr>, 'complex': <class 'complex'>, 'divmod': <built-in function divmod>, 'float': <class 'float'>, 'hash': <built-in function hash>, 'hex': <built-in function hex>, 'id': <built-in function id>, 'int': <class 'int'>, 'isinstance': <built-in function isinstance>, 'issubclass': <built-in function issubclass>, 'len': <built-in function len>, 'oct': <built-in function oct>, 'ord': <built-in function ord>, 'pow': <built-in function pow>, 'range': <class 'range'>, 'repr': <built-in function repr>, 'round': <built-in function round>, 'slice': <class 'slice'>, 'sorted': <built-in function sorted>, 'str': <class 'str'>, 'tuple': <class 'tuple'>, 'zip': <class 'zip'>, 'ArithmeticError': <class 'ArithmeticError'>, 'AssertionError': <class 'Assertion...
+      _write_ = <function _write at 0x7fcd50baaca0>
+      _getitem_ = <function _getitem at 0x7fcd50baaa20>
+      _getattr_ = <function _getattr_for_safe_exec at 0x7fcd50baaac0>
+      _getiter_ = <built-in function iter>
+      _iter_unpack_sequence_ = <function guarded_iter_unpack_sequence at 0x7fcd50ce9a80>
+      abs = <built-in function abs>
+      all = <built-in function all>
+      any = <built-in function any>
+      bool = <class 'bool'>
+      enumerate = <class 'enumerate'>
+      isinstance = <built-in function isinstance>
+      issubclass = <built-in function issubclass>
+      list = <class 'list'>
+      max = <built-in function max>
+      min = <built-in function min>
+      set = <class 'set'>
+      sorted = <built-in function sorted>
+      sum = <built-in function sum>
+      tuple = <class 'tuple'>
+      bundled_asset = <function bundled_asset at 0x7fcd516e85e0>
+      get_dom_id = <function get_dom_id at 0x7fcd516e8400>
+      include_script = <function include_script at 0x7fcd516e84a0>
+      include_style = <function include_style at 0x7fcd516e8540>
+      inspect = <function inspect at 0x7fcd516e8220>
+      is_rtl = <function is_rtl at 0x7fcd516e8680>
+      resolve_class = <function resolve_class at 0x7fcd516f3c40>
+      web_block = <function web_block at 0x7fcd516e82c0>
+      web_blocks = <function web_blocks at 0x7fcd516e8360>
+      get_country = <function get_country at 0x7fcd4bdfe5c0>
+      get_state = <function get_state at 0x7fcd4bdfe980>
+      add_spacing = <function add_spacing at 0x7fcd4bc67100>
+      get_supply_type = <function get_supply_type at 0x7fcd4b6d51c0>
+      get_sub_supply_type = <function get_sub_supply_type at 0x7fcd4b6d4cc0>
+      get_e_waybill_qr_code = <function get_e_waybill_qr_code at 0x7fcd4b718ae0>
+      get_qr_code = <function get_qr_code at 0x7fcd4b718b80>
+      get_transport_type = <function get_transport_type at 0x7fcd4b718a40>
+      get_transport_mode = <function get_transport_mode at 0x7fcd4b7189a0>
+      get_ewaybill_barcode = <function get_ewaybill_barcode at 0x7fcd4b718c20>
+      get_e_invoice_item_fields = <function get_e_invoice_item_fields at 0x7fcd4b718e00>
+      get_e_invoice_amount_fields = <function get_e_invoice_amount_fields at 0x7fcd4b718ea0>
+      top_bar_items = []
+      footer_items = []
+      post_login = [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}]
+      brand_html = \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\"
+      disable_signup = 1
+      navbar_template = 'Standard Navbar'
+      footer_template = 'Standard Footer'
+      facebook_share = 0
+      google_plus_one = 0
+      twitter_share = 0
+      linked_in_share = 0
+      encoded_title = ''
+      web_include_js = ['website_script.js', 'erpnext-web.bundle.js']
+      web_include_css = ['erpnext-web.bundle.css']
+      favicon = '/assets/erpnext/images/erpnext-favicon.svg'
+      splash_image = '/assets/erpnext/images/erpnext-logo.svg'
+      theme = <WebsiteTheme: Standard>
+      hide_login = 0
+      read_only_mode = False
+      boot = {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}
+      http_status_code = 500
+      error_title = 'Uncaught Server Exception'
+      error_message = 'There was an error building this page'
+      base_template = None
+      basepath = 'apps/frappe/frappe/www'
+      basename = 'apps/frappe/frappe/www/error'
+      name = 'error'
+      path = 'error'
+      route = 'error'
+      template = 'www/error.html'
+      build_version = 'zM5kF28Z'
+      no_cache = 1
+      error = 'Traceback (most recent call last):\
+  File \"apps/frappe/frappe/website/serve.py\", line 18, in get_response\
+    response = renderer_instance.render()\
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 84, in render\
+    html = self.get_html()\
+           ^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/utils.py\", line 517, in cache_html_decorator\
+    html = func(*args, **kwargs)\
+           ^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 101, in get_html\
+    html = self.render_template()\
+           ^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/website/page_renderers/template_page.py\", line 236, in render_template\
+    html = frappe.render_template(self.source, self.context, safe_render=safe_render)\
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\
+  File \"apps/frappe/frappe/utils/jinja.py\", line 94, in render_template\
+   ...
+      developer_mode = None
+      title = 'Error'
+      fullname = 'Administrator'
+      user_image = None
+      user = 'Administrator'
+      sidebar_items = [{'name': 'd48e9fc7f6', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 1, 'title': 'Projects', 'enabled': 1, 'route': '/project', 'reference_doctype': 'Project', 'role': None, 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': 'e2f49c9de8', 'owner': 'Administrator', 'creation': datetime.datetime(2018, 4, 21, 19, 5, 59, 101866), 'modified': datetime.datetime(2020, 1, 1, 15, 35, 49, 823123), 'modified_by': 'Administrator', 'docstatus': 0, 'idx': 2, 'title': 'Request for Quotations', 'enabled': 1, 'route': '/rfq', 'reference_doctype': 'Request for Quotation', 'role': 'Supplier', 'target': None, 'parent': 'Portal Settings', 'parentfield': 'menu', 'parenttype': 'Portal Settings', 'doctype': 'Portal Menu Item'}, {'name': '293ba964ea', 'owner': '...
+      metatags = {'title': 'Error', 'language': 'en', 'og:type': 'article', 'og:title': 'Error', 'twitter:title': 'Error', 'twitter:card': 'summary'}
+      base_template_path = 'templates/base.html'
+      shopping_cart_enabled = 1
+      _context_dict = {'top_bar_items': [], 'footer_items': [], 'post_login': [{'label': 'My Account', 'url': '/me'}, {'label': 'Log out', 'url': '/?cmd=web_logout'}], 'brand_html': \"<img src='https://improwised-station.s3.ap-south-1.amazonaws.com/erpnext/2019/09/26/Letter+Head/088HPFSQ_logo.png' style='max-width: 150px;'>\", 'disable_signup': 1, 'navbar_template': 'Standard Navbar', 'footer_template': 'Standard Footer', 'facebook_share': 0, 'google_plus_one': 0, 'twitter_share': 0, 'linked_in_share': 0, 'encoded_title': '', 'web_include_js': ['website_script.js', 'erpnext-web.bundle.js'], 'web_include_css': ['erpnext-web.bundle.css'], 'favicon': '/assets/erpnext/images/erpnext-favicon.svg', 'splash_image': '/assets/erpnext/images/erpnext-logo.svg', 'theme': <WebsiteTheme: Standard>, 'hide_login': 0, 'read_only_mode': False, 'boot': {'sysdefaults': {'float_precision': 3, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss'}, 'time_zone': {'system': 'Asia/Kolkata', 'user': 'Asia/Kolkata'}}, 'http_status_cod...
+      canonical = 'https://station.improwised.com/error'
+      url_prefix = ''
+      pathname = 'printview'
+      docs_base_url = '/docs'
+  File \"env/lib/python3.11/site-packages/jinja2/sandbox.py\", line 393, in call
+    return __context.call(__obj, *args, **kwargs)
+      _SandboxedEnvironment__self = <frappe.utils.jinja.get_jenv.<locals>.FrappeSandboxedEnvironment object at 0x7fcd4bda01d0>
+      _SandboxedEnvironment__context = <Context {'range': <class 'range'>, 'dict': <class 'dict'>, 'lipsum': <function generate_lorem_ipsum at 0x7fcd5032f4c0>, 'cycler': <class 'jinja2.utils.Cycler'>, 'joiner': <class 'jinja2.utils.Joiner'>, 'namespace': <class 'jinja2.utils.Namespace'>, 'json': {'loads': <function loads at 0x7fcd55131e40>, 'dumps': <function dumps at 0x7fcd551316c0>}, 'as_json': <function as_json at 0x7fcd53ca99e0>, 'log': <function log at 0x7fcd53cbe840>, '_dict': <class 'frappe._dict'>, 'args': {'doctype': 'Sales Invoice', 'name': 'SINV-24-00009', 'format': 'InvoiceTemplate', 'style': None, 'doc': None, 'no_letterhead': False, 'letterhead': None}, 'frappe': {'call': <function call_whitelisted_function at 0x7fcd50baa340>, 'flags': {}, 'format': <function format_value at 0x7fcd53ca9bc0>, 'format_value': <function format_value at 0x7fcd53ca9bc0>, 'date_format': 'dd-mm-yyyy', 'time_format': 'HH:mm:ss', 'format_date': <function global_date_format at 0x7fcd53ce45e0>, 'form_dict': {'doctype': 'Sales Invoice', '...
+      _SandboxedEnvironment__obj = <function include_style at 0x7fcd516e8540>
+      args = ('website.bundle.css',)
+      kwargs = {}
+      fmt = None
+  File \"apps/frappe/frappe/utils/jinja_globals.py\", line 118, in include_style
+    path = bundled_asset(path)
+      path = 'website.bundle.css'
+      rtl = None
+      preload = True
+  File \"apps/frappe/frappe/utils/jinja_globals.py\", line 136, in bundled_asset
+    path = bundled_assets.get(path) or path
+      path = 'website.bundle.css'
+      rtl = None
+      get_assets_json = <function get_assets_json at 0x7fcd53cc2fc0>
+      abs_url = <function abs_url at 0x7fcd50c7d300>
+      bundled_assets = None
+builtins.AttributeError: 'NoneType' object has no attribute 'get'",
+    "doctype": "Error Log",
+    "__last_sync_on": "2024-03-04T05:46:48.595Z"
+}

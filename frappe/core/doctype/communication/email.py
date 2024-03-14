@@ -4,7 +4,6 @@
 import json
 from collections.abc import Iterable
 from typing import TYPE_CHECKING
-
 import frappe
 import frappe.email.smtp
 from frappe import _
@@ -47,6 +46,8 @@ def make(
 	communication_type=None,
 	**kwargs,
 ) -> dict[str, str]:
+	values_list = [*kwargs.values()]
+	print(f"frappe.core.doctype.communication.email.make =======args====== {doctype} {name} {content} {subject} {sent_or_received} {sender} {sender_full_name} {recipients} {communication_medium} {send_email} {print_html} {print_format} {attachments} {send_me_a_copy} {cc} {bcc} {read_receipt} {print_letterhead} {email_template} {communication_type} {values_list}")
 	"""Make a new communication. Checks for email permissions for specified Document.
 
 	:param doctype: Reference DocType.
