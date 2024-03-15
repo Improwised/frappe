@@ -26,7 +26,11 @@ PDF_CONTENT_ERRORS = [
 def get_pdf(html, options=None, output: PdfWriter | None = None):
 	html = scrub_urls(html)
 	html, options = prepare_options(html, options)
-
+	print("-------------------------------------------------------------")
+	print("proccesing to get the PDF with the function get_pdf()")
+	print("---html", html)
+	print("---options", options)
+	print("---output", output)
 	options.update({"disable-javascript": "", "disable-local-file-access": ""})
 
 	filedata = ""
@@ -67,7 +71,8 @@ def get_pdf(html, options=None, output: PdfWriter | None = None):
 		writer.encrypt(password)
 
 	filedata = get_file_data_from_writer(writer)
-
+	print("output", filedata)
+	print("--------------------------------------------------------------")
 	return filedata
 
 

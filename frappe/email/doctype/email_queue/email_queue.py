@@ -191,8 +191,13 @@ def send_mail(email_queue_name, smtp_server_instance: SMTPServer = None):
 
 	This provides a way to make sending mail as a background job.
 	"""
+	print("--------------------------------------------------")
+	print("sending mail using send_mail")
 	record = EmailQueue.find(email_queue_name)
+	print("email_queue_name", email_queue_name)
+	print("record", record)
 	record.send(smtp_server_instance=smtp_server_instance)
+	
 
 
 class SendMailContext:
@@ -287,6 +292,7 @@ class SendMailContext:
 		message = message.replace(
 			self.message_placeholder("recipient"), self.get_recipient_str(recipient_email)
 		)
+  
 		message = self.include_attachments(message)
 		return message
 
@@ -490,7 +496,9 @@ class QueueBuilder:
 		self.is_notification = is_notification
 		self.inline_images = inline_images
 		self.print_letterhead = print_letterhead
-
+		for i in (vars(self)):
+			print("QueueBuilder----{0:10}: {1}".format(i, vars(self)[i]))
+   
 	@property
 	def unsubscribe_method(self):
 		return self._unsubscribe_method or "/api/method/frappe.email.queue.unsubscribe"
@@ -607,6 +615,8 @@ class QueueBuilder:
 		return [mail_id for mail_id in self.cc if mail_id not in unsubscribed_emails]
 
 	def get_attachments(self):
+		print("---------------------------------------"),
+		print("get_attachments function-------", )
 		attachments = []
 		if self._attachments:
 			# store attachments with fid or print format details, to be attached on-demand later
@@ -617,7 +627,9 @@ class QueueBuilder:
 					if not att.get("lang", None):
 						att["lang"] = frappe.local.lang
 					att["print_letterhead"] = self.print_letterhead
+					print("---",att)
 					attachments.append(att)
+		print("-----------------------------------------")
 		return attachments
 
 	def prepare_email_content(self):
